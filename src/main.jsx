@@ -17,6 +17,7 @@ import UpdatePlant from './Components/UpdatePlant.jsx';
 import LogIn from './Components/LogIn.jsx';
 import Register from './Components/Register.jsx';
 import AuthProvider from './Context/AuthProvider.jsx';
+import Users from './Components/Users.jsx';
 
 
 const router = createBrowserRouter([
@@ -59,6 +60,11 @@ const router = createBrowserRouter([
       {
         path:'register',
         Component:Register
+      },
+      {
+        path:'users',
+        loader:()=>fetch('http://localhost:3000/users'),
+        Component:Users
       },
 
 

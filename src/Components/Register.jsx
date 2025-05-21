@@ -24,7 +24,7 @@ const [showPassword, setShowPassword]=useState(false);
         const form=e.target;
         const formData=new FormData(form);
 
-        const {email,password, ...userProfile}= Object.fromEntries(formData.entries())
+        const {email,password, ...restFormData}= Object.fromEntries(formData.entries());
 
 
 
@@ -37,11 +37,19 @@ const [showPassword, setShowPassword]=useState(false);
 //         const photo=form.photo.value;
 //         const email=form.email.value;
 //         const password=form.password.value;
-        console.log(email,password, userProfile);
+     
       createUser(email,password)
       .then(result=>{
-const user=result.user;
-console.log(user)
+console.log(result.user);
+
+const userProfile={
+    email,
+    ...restFormData,
+    creationTime:result.user?.metadata?.creationTime,
+    lastSignInTime:result.user?.metadata?.lastSignInTime
+
+
+}
 //  saveuser info in the database
 
 fetch('http://localhost:3000/users',{
