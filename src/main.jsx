@@ -14,6 +14,9 @@ import MyPlants from './Components/MyPlants.jsx';
 import AllPlants from './Components/AllPlants.jsx';
 import PlantDetails from './Components/PlantDetails.jsx';
 import UpdatePlant from './Components/UpdatePlant.jsx';
+import LogIn from './Components/LogIn.jsx';
+import Register from './Components/Register.jsx';
+import AuthProvider from './Context/AuthProvider.jsx';
 
 
 const router = createBrowserRouter([
@@ -48,6 +51,16 @@ const router = createBrowserRouter([
         loader:({params})=> fetch(`http://localhost:3000/plants/${params.id}`),
         Component:UpdatePlant
       },
+      {
+        path:'login',
+        Component:LogIn
+      },
+      
+      {
+        path:'register',
+        Component:Register
+      },
+
 
     ]
   },
@@ -56,6 +69,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-   <RouterProvider router={router} />
+   <AuthProvider>
+    <RouterProvider router={router} />
+   </AuthProvider>
   </StrictMode>,
 )
