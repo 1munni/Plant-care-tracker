@@ -5,6 +5,7 @@ import Banner from './Banner';
 import ConsumerReview from './ConsumerReview';
 import ReviewCard from './ReviewCard';
 import Gellary from './Gellary';
+import NewPlants from './NewPlants';
 
 const Home = () => {
   
@@ -17,6 +18,7 @@ const Home = () => {
     return (
         <div className='  bg-base-200 flex justify-center items-center flex-col'>
       <Banner></Banner>
+      <NewPlants></NewPlants>
       <Gellary></Gellary>
 
 <div className='py-10 flex gap-5 '>
