@@ -40,7 +40,7 @@ const PlantsCard = ({ plant,plants, setPlants,showActions = false,  }) => {
   };
 
   return (
-    <div className="card card-side bg-base-100 shadow-sm border-base-100">
+    <div className="card card-side bg-base-100 shadow-sm border-2">
       <figure>
         <img className="w-[300px] h-[320px]" src={image} />
       </figure>

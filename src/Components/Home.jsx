@@ -16,7 +16,7 @@ const Home = () => {
     // // const [plants, setPlants] = useState(Array.isArray(initialPlants) ? initialPlants : []);
 
     return (
-        <div className='  bg-base-200 flex justify-center items-center flex-col'>
+        <div className='  bg-base-200 flex justify-center items-center flex-col ' data-theme="light">
       <Banner></Banner>
       <NewPlants></NewPlants>
       <Gellary></Gellary>
