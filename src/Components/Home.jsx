@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useLoaderData } from 'react-router';
 import PlantsCard from './PlantsCard';
 import Banner from './Banner';
+import ConsumerReview from './ConsumerReview';
+import ReviewCard from './ReviewCard';
+import Gellary from './Gellary';
 
 const Home = () => {
   
@@ -12,10 +15,14 @@ const Home = () => {
     // // const [plants, setPlants] = useState(Array.isArray(initialPlants) ? initialPlants : []);
 
     return (
-        <div className='  bg-base-200 '>
+        <div className='  bg-base-200 flex justify-center items-center flex-col'>
       <Banner></Banner>
+      <Gellary></Gellary>
 
-  
+<div className='py-10 flex gap-5 '>
+    <ConsumerReview></ConsumerReview>
+    <ReviewCard></ReviewCard>
+</div>
         </div>
     );
 };

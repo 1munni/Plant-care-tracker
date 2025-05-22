@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Links } from "react-router";
 import Swal from "sweetalert2";
 
-const PlantsCard = ({ plant,plants, setPlants }) => {
+const PlantsCard = ({ plant,plants, setPlants,showActions = false,  }) => {
   const { image, name, category, _id,wateringFrequency } = plant;
   const handleDelete = (_id) => {
     console.log(_id);
@@ -55,12 +55,28 @@ const PlantsCard = ({ plant,plants, setPlants }) => {
           <Link to={`/plant/${_id}`}>
             <button className="btn join-item">View</button>
           </Link>
-            <Link to={`/updatePlants/${_id}`}>
+
+            {/* <Link to={`/updatePlants/${_id}`}>
             <button className="btn join-item">Edit</button>
             </Link>
             <button onClick={() => handleDelete(_id)} className="btn join-item">
               X
-            </button>
+            </button> */}
+
+             {/* Only show Edit/Delete when showActions===true */}
+          {showActions && (
+            <>
+              <Link to={`/updatePlants/${_id}`}>
+                <button className="btn btn-sm">Edit</button>
+              </Link>
+              <button
+                onClick={() => handleDelete(_id)}
+                className="btn btn-sm btn-error"
+              >
+                Delete
+              </button>
+            </>
+          )}
           </div>
         </div>
       </div>

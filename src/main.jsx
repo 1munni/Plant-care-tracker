@@ -20,6 +20,7 @@ import Users from './Components/Users.jsx';
 import PrivateRoute from './Context/PrivateRoute.jsx';
 import AddPlants from './Components/AddPlants.jsx';
 import Loading from './Components/Loading.jsx';
+import ErrorPage from './Components/ErrorPage.jsx';
 
 
 const router = createBrowserRouter([
@@ -29,7 +30,6 @@ const router = createBrowserRouter([
     children:[
       {
         index:true,
-        // loader:()=>fetch('https://plan-care-tracker-server.vercel.app/plants'),
         Component:Home,
        
       },
@@ -40,24 +40,25 @@ const router = createBrowserRouter([
         Component:AllPlants,
          hydrateFallbackElement:<Loading></Loading>
       },
-      // {
-      //   path:"addPlants",
-      //   element:<PrivateRoute><AddPlants></AddPlants></PrivateRoute>
-      // },
+     
       {
         path:"addPlants",
-        element:<AddPlants></AddPlants>
+        element:<PrivateRoute>
+  <AddPlants></AddPlants>
+        </PrivateRoute>
+      
       },
    
       {
         path:"plant/:id",
-        Component:PlantDetails
+     element:<PrivateRoute><PlantDetails></PlantDetails></PrivateRoute>
       },
 
       {
   path: "/myPlants",
-  element: <MyPlants />,
-  loader: () => fetch("https://plan-care-tracker-server.vercel.app/plants").then(r=>r.json())
+  element: <PrivateRoute><MyPlants /></PrivateRoute>,
+  loader: () => fetch("https://plan-care-tracker-server.vercel.app/plants").then(r=>r.json()),
+    hydrateFallbackElement:<Loading></Loading>
 },
       {
         path:"updatePlants/:id",
@@ -71,13 +72,19 @@ const router = createBrowserRouter([
       },
       
       {
+        path:'/*',
+        Component:ErrorPage
+      },
+      
+      {
         path:'register',
         Component:Register
       },
       {
         path:'users',
         loader:()=>fetch('https://plan-care-tracker-server.vercel.app/users'),
-        Component:Users
+        Component:Users,
+        hydrateFallbackElement:<Loading></Loading>
       },
 
 

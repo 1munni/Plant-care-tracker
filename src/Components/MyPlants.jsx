@@ -2,6 +2,7 @@ import React, { use, useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import PlantsCard from './PlantsCard';
 import { useLoaderData } from 'react-router';
+import Loading from './Loading';
 
 const MyPlants = () => {
   const allPlants = useLoaderData();            
@@ -9,7 +10,7 @@ const MyPlants = () => {
 
   // 1) still waiting on auth?
   if (loading) {
-    return <div className="text-center mt-10">Checking credentials…</div>;
+    return <Loading></Loading>;
   }
 
   // 2) require login
@@ -47,8 +48,9 @@ const MyPlants = () => {
             key={plant._id}
             plant={plant}
             plants={myPlants}
+            showActions={true} 
             setPlants={() => {
-              /* if you need to delete/update, pass a setter here */
+           
             }}
           />
         ))}

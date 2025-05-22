@@ -18,20 +18,12 @@ const AllPlants = () => {
                        plant={plant}
                          plants={plants}
                          setPlants={setPlants}>
+                            showActions={false} 
                       
 
                         </PlantsCard>)
                 }
-                {/* {
-  Array.isArray(plants) && plants.map(plant => (
-    <PlantsCard
-      key={plant._id}
-      plant={plant}
-      plants={plants}
-      setPlants={setPlants}
-    />
-  ))
-} */}
+               
             </div>  
         </div>
     );
