@@ -3,7 +3,7 @@ import { Link, Links } from "react-router";
 import Swal from "sweetalert2";
 
 const PlantsCard = ({ plant,plants, setPlants,showActions = false,  }) => {
-  const { image, name, category, _id,wateringFrequency } = plant;
+  const { image, name, category, _id,wateringFrequency, careLevel } = plant;
   const handleDelete = (_id) => {
     console.log(_id);
     Swal.fire({
@@ -49,6 +49,7 @@ const PlantsCard = ({ plant,plants, setPlants,showActions = false,  }) => {
           <h2 className="font-bold text-xl">{name}</h2>
           <p className="font-bold">Category: {category}</p>
           <p classname='font-medium'>WateringFrequency: {wateringFrequency}</p>
+          <p classname='font-medium'>CareLevel: {careLevel}</p>
         </div>
         <div className="card-actions justify-center">
           <div className="join join-vertical space-y-2">
