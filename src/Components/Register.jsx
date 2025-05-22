@@ -52,7 +52,7 @@ const userProfile={
 }
 //  saveuser info in the database
 
-fetch('http://localhost:3000/users',{
+fetch('https://plan-care-tracker-server.vercel.app/users',{
     method:'POST',
     headers:{
 'content-type':'application/json'
@@ -72,10 +72,7 @@ fetch('http://localhost:3000/users',{
     }
     console.log('after profile save', data)
 })
-
-
-
-// navigate('/'); 
+navigate('/'); 
 
 // updateUser({displayName:name, photoURL:photo})
 // .then(()=>{
@@ -95,6 +92,7 @@ fetch('http://localhost:3000/users',{
         // console.log(errorMessage)
         toast.error(`Registration failed: ${error.message}`);
       }); }
+
 
       const handleGoogleLogIn=()=>{
         googleSignIn()

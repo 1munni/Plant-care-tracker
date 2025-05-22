@@ -12,7 +12,7 @@ const handleUpdatePlant=e=>{
     console.log(updatedPlant);
 
     // send updated plants to the database
-    fetch(`http://localhost:3000/plants/${_id}`, {
+    fetch(`https://plan-care-tracker-server.vercel.app/plants/${_id}`, {
     method: 'PUT',
     headers: {
         'Content-Type': 'application/json'

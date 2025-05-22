@@ -18,7 +18,7 @@ const Users = () => {
 }).then((result) => {
   if (result.isConfirmed) {
 
-    fetch(`http://localhost:3000/users/${id}`,{
+    fetch(`https://plan-care-tracker-server.vercel.app/users/${id}`,{
         method:'Delete'
     })
     .then(res=>res.json())

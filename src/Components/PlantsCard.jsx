@@ -3,7 +3,7 @@ import { Link, Links } from "react-router";
 import Swal from "sweetalert2";
 
 const PlantsCard = ({ plant,plants, setPlants }) => {
-  const { image, name, category, healthStatus, _id } = plant;
+  const { image, name, category, _id,wateringFrequency } = plant;
   const handleDelete = (_id) => {
     console.log(_id);
     Swal.fire({
@@ -18,7 +18,7 @@ const PlantsCard = ({ plant,plants, setPlants }) => {
       console.log(result.isConfirmed);
       if (result.isConfirmed) {
         //start deleteing the plant
-        fetch(`http://localhost:3000/plants/${_id}`, {
+        fetch(`https://plan-care-tracker-server.vercel.app/plants/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -48,7 +48,7 @@ const PlantsCard = ({ plant,plants, setPlants }) => {
         <div className="py-3">
           <h2 className="font-bold text-xl">{name}</h2>
           <p className="font-bold">Category: {category}</p>
-          <p>HealthStatus: {healthStatus}</p>
+          <p classname='font-medium'>WateringFrequency: {wateringFrequency}</p>
         </div>
         <div className="card-actions justify-center">
           <div className="join join-vertical space-y-2">

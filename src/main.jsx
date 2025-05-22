@@ -9,7 +9,6 @@ import {
 } from "react-router";
 import MainLayout from './LayOuts/MainLayout.jsx';
 import Home from './Components/Home.jsx';
-import AddPlants from './Components/AddPlants.jsx';
 import MyPlants from './Components/MyPlants.jsx';
 import AllPlants from './Components/AllPlants.jsx';
 import PlantDetails from './Components/PlantDetails.jsx';
@@ -18,6 +17,9 @@ import LogIn from './Components/LogIn.jsx';
 import Register from './Components/Register.jsx';
 import AuthProvider from './Context/AuthProvider.jsx';
 import Users from './Components/Users.jsx';
+import PrivateRoute from './Context/PrivateRoute.jsx';
+import AddPlants from './Components/AddPlants.jsx';
+import Loading from './Components/Loading.jsx';
 
 
 const router = createBrowserRouter([
@@ -27,31 +29,42 @@ const router = createBrowserRouter([
     children:[
       {
         index:true,
-        loader:()=>fetch('http://localhost:3000/plants'),
-        Component:Home
+        // loader:()=>fetch('https://plan-care-tracker-server.vercel.app/plants'),
+        Component:Home,
+       
       },
+
       {
         path:"allPlants",
-        Component:AllPlants
+          loader:()=>fetch('https://plan-care-tracker-server.vercel.app/plants'),
+        Component:AllPlants,
+         hydrateFallbackElement:<Loading></Loading>
       },
+      // {
+      //   path:"addPlants",
+      //   element:<PrivateRoute><AddPlants></AddPlants></PrivateRoute>
+      // },
       {
         path:"addPlants",
-        Component:AddPlants
+        element:<AddPlants></AddPlants>
       },
+   
       {
         path:"plant/:id",
         Component:PlantDetails
       },
 
       {
-        path:"myPlants",
-        Component:MyPlants
-      },
+  path: "/myPlants",
+  element: <MyPlants />,
+  loader: () => fetch("https://plan-care-tracker-server.vercel.app/plants").then(r=>r.json())
+},
       {
         path:"updatePlants/:id",
-        loader:({params})=> fetch(`http://localhost:3000/plants/${params.id}`),
-        Component:UpdatePlant
-      },
+        loader:({params})=> fetch(`https://plan-care-tracker-server.vercel.app/plants/${params.id}`),
+        Component:UpdatePlant,
+        hydrateFallbackElement:<Loading></Loading>
+      }]},
       {
         path:'login',
         Component:LogIn
@@ -63,14 +76,13 @@ const router = createBrowserRouter([
       },
       {
         path:'users',
-        loader:()=>fetch('http://localhost:3000/users'),
+        loader:()=>fetch('https://plan-care-tracker-server.vercel.app/users'),
         Component:Users
       },
 
 
     ]
-  },
-]);
+);
 
 
 createRoot(document.getElementById('root')).render(

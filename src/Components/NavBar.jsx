@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link, NavLink } from 'react-router';
+import { AuthContext } from '../Context/AuthContext';
+import toast from 'react-hot-toast';
 
 const NavBar = () => {
+   const{user,logOut}=use(AuthContext)
+   const handleLogOut=()=>{
+    console.log('user trying to log out')
+    logOut().then(() => {
+      toast("Sign-out successful.") 
+    }).catch((error) => {
+      console.log(error)
+    });
+    
+  }
 
     const links=<>
     <li><NavLink className={({isActive})=> isActive? 'text-indigo-500':''} to='/'>Home</NavLink> </li>
@@ -10,7 +22,7 @@ const NavBar = () => {
     <li><NavLink className={({isActive})=> isActive? 'text-indigo-500':''} to='/myPlants'>My Plants</NavLink> </li>
  </>
     return (
-      <div  className='bg-base-300 '>
+      <div  className='bg-base-300 mx-auto '>
        
       <div className="navbar mx-auto p-2 max-w-6xl drop-shadow-2xl  ">
       <div className="navbar-start">
@@ -39,22 +51,76 @@ const NavBar = () => {
       }
           </ul>
         </div>
-        <div className="navbar-end space-x-2">
-        {/* <div className='font-bold shadow'>{user && user.email}</div> */}
-{/* <img
+        {/* <div className="navbar-end space-x-2">
+    
+        <div className='font-bold shadow'>{user && user.email}</div>
+<img
   className='w-12 h-12 rounded-full'
-  src={user ? user.photoURL : userIcon}
+  src={user}
   alt="User avatar"
   title={user ? user.displayName || "No Name" : "Guest"} 
-/> */}
+/>
 
 
             
-            {/* {user ?
-            (<button onClick={handleLogOut} className='className="btn rounded-2xl bg-[#74b72e] p-2 font-medium"'>LogOut</button>): */}
-(<Link to='/auth/login' className="btn rounded-2xl bg-[#74b72e] py-2 font-medium">LogIn</Link>)          
+            {user ?
+            (<button onClick={handleLogOut} className='className="btn rounded-2xl bg-[#74b72e] p-2 font-medium"'>LogOut</button>):
+(<Link to='/login' className="btn  bg-[#74b72e] py-2 font-medium">LogIn</Link>)  
+        }
+                  
           
+        </div> */}
+{/* Right side: User info and auth buttons */}
+<div className="navbar-end space-x-3">
+  {user ? (
+    <>
+      {/* User Email */}
+      {user?.email && (
+        <span className="font-medium hidden md:inline">
+          {user.email}
+        </span>
+      )}
+
+      {/* Avatar with tooltip showing user name */}
+      {user?.photo && (
+        <div
+          className="tooltip tooltip-bottom"
+          data-tip={user?.name || 'No Name'}
+        >
+          <img
+            className="w-10 h-10 rounded-full object-cover border-2 border-[#74b72e]"
+            src={user.photo || 'https://i.ibb.co/2kR0mbk/default-avatar.png'}
+            alt="User Avatar"
+          />
         </div>
+      )}
+      {user ? (
+        <button
+          onClick={handleLogOut}
+          className="btn bg-[#74b72e] rounded-xl px-4 text-white"
+        >
+          LogOut
+        </button>
+      ) : (
+        <Link to="/login" className="btn bg-[#74b72e] text-white">
+          Login
+        </Link>
+      )}
+    </>
+  ) : (
+    <>
+      <Link to="/login" className="btn bg-[#74b72e] text-white">
+        Login
+      </Link>
+      <Link to="/register" className="btn btn-outline">
+        Register
+      </Link>
+    </>
+  )}
+</div>
+
+
+
       </div>
       </div>
     );
