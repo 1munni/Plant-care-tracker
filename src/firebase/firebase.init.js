@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAQtVdGRnnBztnlP1M1N6YbuLjGYVEfd8A",
-  authDomain: "plan-care-tracker-app.firebaseapp.com",
-  projectId: "plan-care-tracker-app",
-  storageBucket: "plan-care-tracker-app.firebasestorage.app",
-  messagingSenderId: "639474605350",
-  appId: "1:639474605350:web:275979ad6831d3dd8a35e7"
+  apiKey:import.meta.env.VITE_apiKey,
+  authDomain:import.meta.env.VITE_authDomain,
+  projectId:import.meta.env.VITE_projectId,
+  storageBucket:import.meta.env.VITE_storageBucket,
+  messagingSenderId:import.meta.env.VITE_messagingSenderId,
+  appId:import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase

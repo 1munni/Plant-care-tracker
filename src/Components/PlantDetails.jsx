@@ -1,45 +1,43 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { FaLeaf, FaTint, FaUser, FaHeartbeat, FaCalendarAlt } from 'react-icons/fa';
 
-const PlantDetails = () => {
+function PlantDetails() {
   const { id } = useParams();
   const [plant, setPlant] = useState(null);
 
   useEffect(() => {
+    // Fetch plant data by ID
     fetch(`https://plan-care-tracker-server.vercel.app/plants/${id}`)
-      .then(res => res.json())
-      .then(data => {
-        setPlant(data);
-      });
+      .then(response => response.json())
+      .then(data => setPlant(data))
+      .catch(error => console.error('Error fetching plant:', error));
   }, [id]);
 
-  if (!plant) return <div className="text-center text-lg mt-10">Loading plant info...</div>;
+  if (!plant) {
+    return <p style={{ textAlign: 'center', marginTop: '2rem' }}>Loading...</p>;
+  }
 
   return (
-    <section className="max-w-5xl mx-auto mt-12 px-6 py-10 bg-gradient-to-br from-green-50 to-green-100 rounded-3xl shadow-2xl">
-      <div className="grid md:grid-cols-2 gap-10 items-center">
-        <div className="overflow-hidden rounded-xl shadow-md">
-          <img src={plant.image} alt={plant.name} className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500" />
-        </div>
+    <div style={{ maxWidth: '600px', margin: '2rem auto', padding: '1rem', border: '1px solid #ddd', borderRadius: '8px' }}>
+      <img
+        src={plant.image}
+        alt={plant.name}
+        style={{ width: '100%', borderRadius: '4px' }}
+      />
+      <h2 style={{ marginTop: '1rem', fontSize: '1.5rem' }}>{plant.name}</h2>
+      <p style={{ fontStyle: 'italic', color: '#555' }}>{plant.Description}</p>
 
-        <div className="space-y-4">
-          <h1 className="text-4xl font-bold text-green-900">{plant.name}</h1>
-          <p className="text-md text-gray-700 italic">{plant.Description}</p>
-
-          <ul className="text-md space-y-2 mt-4">
-            <li><FaLeaf className="inline text-green-600 mr-2" /><strong>Category:</strong> {plant.category}</li>
-            <li><FaTint className="inline text-blue-600 mr-2" /><strong>Watering:</strong> {plant.wateringFrequency}</li>
-            <li><FaHeartbeat className="inline text-red-500 mr-2" /><strong>Health:</strong> {plant.healthStatus}</li>
-            <li><strong>Care Level:</strong> {plant.careLevel}</li>
-            <li><FaCalendarAlt className="inline text-yellow-500 mr-2" /><strong>Last Watered:</strong> {plant.lastWateredDate}</li>
-            <li><FaCalendarAlt className="inline text-blue-500 mr-2" /><strong>Next Watering:</strong> {plant.nextWateringDate}</li>
-            <li><FaUser className="inline text-purple-500 mr-2" /><strong>Added By:</strong> {plant.userName || 'Unknown'} ({plant.userEmail || 'N/A'})</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+      <ul style={{ listStyle: 'none', padding: 0, marginTop: '1rem' }}>
+        <li><strong>Category:</strong> {plant.category}</li>
+        <li><strong>Watering Frequency:</strong> {plant.wateringFrequency}</li>
+        <li><strong>Health Status:</strong> {plant.healthStatus}</li>
+        <li><strong>Care Level:</strong> {plant.careLevel}</li>
+        <li><strong>Last Watered:</strong> {plant.lastWateredDate}</li>
+        <li><strong>Next Watering:</strong> {plant.nextWateringDate}</li>
+        <li><strong>Added By:</strong> {plant.userName || 'Unknown'}</li>
+      </ul>
+    </div>
   );
-};
+}
 
 export default PlantDetails;
