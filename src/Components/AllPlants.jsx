@@ -9,7 +9,7 @@ const AllPlants = () => {
         console.log(initialPlants);
         // const [plants, setPlants] = useState(Array.isArray(initialPlants) ? initialPlants : []);
     return (
-        <div>
+        <div className='pt-20 lg:pt-5'>
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-6  py-10 max-w-11/12 mx-auto' >
                 {
                     initialPlants && 
