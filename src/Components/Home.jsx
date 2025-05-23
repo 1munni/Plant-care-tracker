@@ -9,12 +9,6 @@ import NewPlants from './NewPlants';
 
 const Home = () => {
   
-    // const initialPlants=useLoaderData();
-    // const [plants, setPlants] = useState(initialPlants?.data || []);
-    // // const[plants, setPlants]=useState(initialPlants);
-    // console.log(initialPlants);
-    // // const [plants, setPlants] = useState(Array.isArray(initialPlants) ? initialPlants : []);
-
     return (
         <div className='  bg-base-200 flex justify-center items-center flex-col ' data-theme="light">
       <Banner></Banner>
@@ -22,7 +16,7 @@ const Home = () => {
       <NewPlants></NewPlants>
       <Gellary></Gellary>
 
-<div className='py-10 grid sm:grid-cols-1 gap-5 '>
+<div className='py-10 grid sm:grid-cols-1 lg:grid-cols-2 gap-5 '>
     <ConsumerReview></ConsumerReview>
     <ReviewCard></ReviewCard>
 </div>

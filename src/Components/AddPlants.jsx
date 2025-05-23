@@ -24,7 +24,7 @@ fetch('https://plan-care-tracker-server.vercel.app/plants', {
     if(data.insertedId){
         console.log(' plant added successfully')
        Swal.fire({
-  title: "Drag me!",
+  title: "add successful!",
   icon: "success",
   draggable: true
 });
