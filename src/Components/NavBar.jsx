@@ -174,7 +174,7 @@ const NavBar = () => {
             
             {user ?
             (<button onClick={handleLogOut} className='className="btn rounded-2xl bg-[#74b72e] p-2 font-medium"'>LogOut</button>):
-(<Link to='/auth/login' className="btn rounded-2xl bg-[#74b72e] py-2 font-medium">LogIn</Link>)          }
+(<Link to='/login' className="btn rounded-2xl bg-[#74b72e] py-2 font-medium">LogIn</Link>)          }
           
         </div>
       </div>
