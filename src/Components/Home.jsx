@@ -22,7 +22,7 @@ const Home = () => {
       <NewPlants></NewPlants>
       <Gellary></Gellary>
 
-<div className='py-10 flex gap-5 '>
+<div className='py-10 grid sm:grid-cols-1 gap-5 '>
     <ConsumerReview></ConsumerReview>
     <ReviewCard></ReviewCard>
 </div>
